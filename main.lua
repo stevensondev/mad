@@ -23,7 +23,7 @@ local addBox
 local inc = 0
 local r=0
 local g=0
-local b=0
+local b=1
 local endGame
 local screamTable = {}
 local randSoundNo
