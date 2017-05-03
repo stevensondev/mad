@@ -102,8 +102,8 @@ for i = 1,8 do
 
 end
 
-saveScoreBtn = display.newText("Save Score", display.contentCenterX, display.contentHeight, nil, 30)
-clearScoreBtn = display.newText("Clear Score", display.contentCenterX, display.contentHeight*.9, nil, 30)
+--saveScoreBtn = display.newText("Save Score", display.contentCenterX, display.contentHeight, nil, 30)
+--clearScoreBtn = display.newText("Clear Score", display.contentCenterX, display.contentHeight*.9, nil, 30)
 
 function clearScore ()
 	score = 0
@@ -120,5 +120,5 @@ function saveScore ()
 	loadsave.saveTable(savedScore, "score.json")
 end
 
-clearScoreBtn:addEventListener("tap", clearScore)
-saveScoreBtn:addEventListener("tap", saveScore)
+--clearScoreBtn:addEventListener("tap", clearScore)
+--saveScoreBtn:addEventListener("tap", saveScore)
