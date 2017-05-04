@@ -75,9 +75,9 @@ function disappearBox(event)
 		score = score+1
 		print (score)
 		if score == 1 then
-			scoreText.text = "You have tormented "..score.." person"
+			scoreText.text = "You have teased "..score.." person"
 		else  
-			scoreText.text = "You have tormented "..score.." people" 
+			scoreText.text = "You have teased "..score.." people" 
 
 		end
 		
