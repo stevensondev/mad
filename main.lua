@@ -6,6 +6,8 @@
 
 display.setStatusBar(display.HiddenStatusBar)
 
+local json = require("json")
+local loadsave = require("loadsave")
 
 local randLocX = math.random(display.screenOriginX, display.contentWidth-50)
 local randLocY = math.random(display.contentHeight*.2, display.contentHeight-50)
@@ -16,7 +18,17 @@ local inc = 0
 local r=0
 local g=0
 local b=1
-local score = 0
+local settings = loadsave.loadTable("gameSettings.json")
+if score == nil then
+	score = 0 
+end
+
+local gameSettings = {
+	score = 0,
+	level = 1,
+	health = 10
+}
+
 local screamTable = {}
 local randSoundNo
 
@@ -92,3 +104,21 @@ for i = 1,8 do
 	circleTable[i]:addEventListener("touch", disappearBox)
 
 end
+
+saveScoreBtn = display.newText("Save Score", display.contentCenterX, display.contentHeight, nil, 30)
+clearScoreBtn = display.newText("Clear Score", display.contentCenterX, display.contentHeight*.9, nil, 30)
+
+function saveScore()
+	scoreText.text = "Saved Score"
+	--loadsave.saveTable(score, "score.json")
+		loadsave.saveTable(gameSettings, "settings.json")
+
+end
+
+function clearScore()
+	scoreText.text = "Cleared Score"
+	score = 0 
+	loadsave.saveTable(score, "score.json")
+end
+saveScoreBtn:addEventListener("tap", saveScore)
+clearScoreBtn:addEventListener("tap", clearScore)
