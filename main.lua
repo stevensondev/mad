@@ -6,15 +6,7 @@
 
 display.setStatusBar(display.HiddenStatusBar)
 
-local json = require("json")
-local loadsave = require("loadsave")
 
-local score = loadsave.loadTable("score.json")
-if score == nil then
-	score = 0
-end
-
-local savedScore
 local randLocX = math.random(display.screenOriginX, display.contentWidth-50)
 local randLocY = math.random(display.contentHeight*.2, display.contentHeight-50)
 local circleTable = {}
@@ -24,10 +16,9 @@ local inc = 0
 local r=0
 local g=0
 local b=1
-local endGame
+local score = 0
 local screamTable = {}
 local randSoundNo
-local endGameBtn
 
 local scoreText = display.newText("", display.contentCenterX, display.contentHeight*.05, nil,18)
 
@@ -75,9 +66,9 @@ function disappearBox(event)
 		score = score+1
 		print (score)
 		if score == 1 then
-			scoreText.text = "You have tormented "..score.." person"
+			scoreText.text = "You have teased "..score.." person"
 		else  
-			scoreText.text = "You have tormented "..score.." people" 
+			scoreText.text = "You have teased "..score.." people" 
 
 		end
 		
@@ -101,24 +92,3 @@ for i = 1,8 do
 	circleTable[i]:addEventListener("touch", disappearBox)
 
 end
-
---saveScoreBtn = display.newText("Save Score", display.contentCenterX, display.contentHeight, nil, 30)
---clearScoreBtn = display.newText("Clear Score", display.contentCenterX, display.contentHeight*.9, nil, 30)
-
-function clearScore ()
-	score = 0
-	scoreText.text = "Cleared score" 
-	savedScore=json.encode(score)
-	print(savedScore)
-	loadsave.saveTable(savedScore, "score.json")
-end
-
-function saveScore ()
-	scoreText.text = "Saved score"
-	savedScore=json.encode(score)
-	print(savedScore)
-	loadsave.saveTable(savedScore, "score.json")
-end
-
---clearScoreBtn:addEventListener("tap", clearScore)
---saveScoreBtn:addEventListener("tap", saveScore)
